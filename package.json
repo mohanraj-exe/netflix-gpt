@@ -1,0 +1,22 @@
+{
+  "name": "14-netflix-gpt",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Mohanraj S",
+  "type": "module",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "firebase": "^12.12.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-router": "^7.14.1",
+    "tailwindcss": "^4.2.2"
+  }
+}

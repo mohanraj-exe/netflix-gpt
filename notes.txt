@@ -1,0 +1,36 @@
+Topics covered:
+1. Authentication
+2. Firebase
+3. Form handling.
+4. Protected routes.
+5. Netflix + GPT
+6. Tailwind Css
+ - Post css - .postcssrc is a config file, it is a way 'parcel' understands
+ Tailwind css in the project.
+
+---------------------------
+Project setup:
+
+1. Use create-react-app or vite for react project set-up(Recommended).
+2. We used Parcel for building the project.
+
+Features:
+1. Login/Sign-up(Protected routes)
+ - Login/Sign-up
+ - Redirect to browse page.
+
+2. Browse page(it should shows only after Authentication)
+ 1. Header
+ 2. Main movie (it shows)
+  - Trailer in the background
+  - Title and Description.
+ 3. Movie suggestions.
+  - Movie list
+
+3. Amazon prime + GPT
+ - Search bar.
+ - Movie suggestions.
+
+All this Features for loggedInUser
+
+
