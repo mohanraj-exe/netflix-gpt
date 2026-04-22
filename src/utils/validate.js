@@ -1,5 +1,5 @@
 export const validate = (...inputs) => {
-  console.log(inputs);
+  // console.log(inputs);
   // return;
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

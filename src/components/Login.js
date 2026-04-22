@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { NETFLIX_LOGIN_PAGE } from "../utils/constants";
 import Header from "./Header";
 import { validate } from "../utils/validate";
+import { auth } from "../utils/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -11,6 +13,9 @@ const Login = () => {
   const email = useRef(null);
   const confirmPassword = useRef(null);
   const password = useRef(null);
+
+  // console.log("hello world");
+  // console.log(process.env.REACT_APP_FIREBASE_API_KEY);
 
   const toggleLoginInForm = () => {
     setIsLoginForm(!isLoginForm);
@@ -27,8 +32,45 @@ const Login = () => {
       !isLoginForm ? fullName.current.value : null,
     );
 
-    console.log(message);
+    // console.log(message);
     setErrorMessage(message);
+
+    if (message) return;
+
+    if (!isLoginForm) {
+      // Create account logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value,
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          // console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    } else {
+      // Login logic
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed In
+          const user = userCredential.user;
+          // console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          // console.log(error.code, error.message);
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    }
   };
 
   return (
@@ -101,7 +143,6 @@ const Login = () => {
             : "Already have an account? Login"}
         </p>
       </form>
-
     </div>
   );
 };
