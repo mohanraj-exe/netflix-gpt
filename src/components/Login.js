@@ -1,11 +1,21 @@
 import { useRef, useState } from "react";
-import { NETFLIX_LOGIN_PAGE } from "../utils/constants";
+import { NETFLIX_LOGIN_PAGE, NETFLIX_USER_AVATAR } from "../utils/constants";
 import Header from "./Header";
 import { validate } from "../utils/validate";
 import { auth } from "../utils/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { addUser, removeUser } from "../utils/userSlice";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -48,6 +58,27 @@ const Login = () => {
           // Signed up
           const user = userCredential.user;
           // console.log(user);
+
+          updateProfile(user, {
+            displayName: fullName.current.value,
+            photoURL: NETFLIX_USER_AVATAR,
+          })
+            .then(() => {
+              const { displayName, email, uid, photoURL } = auth.currentUser;              
+              dispatch(
+                addUser({
+                  username: displayName,
+                  email: email,
+                  uid: uid,
+                  photoURL: photoURL,
+                }),
+              );
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+            });
+
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -57,11 +88,16 @@ const Login = () => {
         });
     } else {
       // Login logic
-      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value,
+      )
         .then((userCredential) => {
           // Signed In
           const user = userCredential.user;
           // console.log(user);
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
