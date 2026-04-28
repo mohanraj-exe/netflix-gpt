@@ -9,12 +9,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router";
 
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -23,9 +23,6 @@ const Login = () => {
   const email = useRef(null);
   const confirmPassword = useRef(null);
   const password = useRef(null);
-
-  // console.log("hello world");
-  // console.log(process.env.REACT_APP_FIREBASE_API_KEY);
 
   const toggleLoginInForm = () => {
     setIsLoginForm(!isLoginForm);
@@ -64,7 +61,7 @@ const Login = () => {
             photoURL: NETFLIX_USER_AVATAR,
           })
             .then(() => {
-              const { displayName, email, uid, photoURL } = auth.currentUser;              
+              const { displayName, email, uid, photoURL } = auth.currentUser;
               dispatch(
                 addUser({
                   username: displayName,
@@ -78,7 +75,7 @@ const Login = () => {
               setErrorMessage(error.message);
             });
 
-          navigate("/browse");
+          // navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -97,7 +94,7 @@ const Login = () => {
           // Signed In
           const user = userCredential.user;
           // console.log(user);
-          navigate("/browse");
+          // navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;

@@ -6,6 +6,11 @@ import { useNavigate } from "react-router";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 
+import { useEffect } from "react";
+import { auth } from "../utils/firebase.js";
+import { onAuthStateChanged } from "firebase/auth";
+import { addUser, removeUser } from "../utils/userSlice.js";
+
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -13,22 +18,48 @@ const Header = () => {
 
   const handleLogoutButton = () => {
     signOut(auth)
-      .then(() => {
-        navigate("/");
-      })
+      .then()
       .catch((error) => {
         navigate("/error");
       });
   };
 
+  useEffect(() => {
+    let subscribe = onAuthStateChanged(auth, (user) => {
+      // console.log("User data starts fetching...");
+      // console.log(user);
+
+      if (user) {
+        // console.log("User found!");
+        const { email, uid, photoURL, displayName } = user;
+        dispatch(
+          addUser({
+            email: email,
+            uid: uid,
+            photoURL: photoURL,
+            username: displayName,
+          }),
+        );
+        navigate("/browse");
+      } else {
+        // console.log("User signed out");
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+
+    let unsubscribe = subscribe;
+    return () => unsubscribe();
+  }, []);
+
   return (
-    <header className="absolute w-full header-container px-8 py-2 bg-linear-to-b from-black z-10 flex justify-between">
+    <header className="min-w-full absolute header-container px-8 py-2 bg-linear-to-b from-black z-10 flex justify-between">
       <img className="w-40" src={NETFLIX_LOGO} alt="logo" />
 
       {user && (
         <div className="flex justify-between items-center gap-2">
           <span className="flex">
-            Hello,&nbsp; 
+            Hello,&nbsp;
             <p className="font-bold text-white">{user?.username}</p>
           </span>
           <img
