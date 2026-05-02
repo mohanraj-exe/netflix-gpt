@@ -24,3 +24,10 @@ export const TMDB_UPCOMING_MOVIES_API = "upcoming?page=1";
 export const TMDB_TOP_RATED_MOVIES_API = "top_rated?page=1";
 
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
+
+export const YT_EMBED_URL_BASE = "https://www.youtube.com/embed/";
+
+export const YT_EMBED_URL_PLAYLIST = "?playlist=";
+
+export const YT_EMBED_URL_LOOP_AUTO_MUTE_CONTROLS =
+  "&loop=1&autoplay=1&mute=1&controls=0";

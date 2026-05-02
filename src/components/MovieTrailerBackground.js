@@ -2,11 +2,29 @@ import React from "react";
 import useMovieTrailer from "../hooks/useMovieTrailer";
 import { useSelector } from "react-redux";
 import MovieTrailerBackgroundInfo from "./MovieTrailerBackgroundInfo";
+import {
+  YT_EMBED_URL_BASE,
+  YT_EMBED_URL_LOOP_AUTO_MUTE_CONTROLS,
+  YT_EMBED_URL_PLAYLIST,
+} from "../utils/constants";
 
-const MovieTrailerBackground = ({ movieId }) => {
-  // console.log(movieId);
-  useMovieTrailer(movieId);
-  const movieTrailerData = useSelector((store) => store.movies?.movieTrailer);
+const MovieTrailerBackground = ({ movie }) => {
+  const showTrailer = useSelector(
+    (store) => store.movies?.browsePageShowTrailer,
+  );
+  useMovieTrailer(movie);
+
+  let video;
+
+  if (showTrailer) {
+    video = useSelector((store) => store.movies?.movieTrailerVideo);
+    // console.log("show trailer:", video);
+  } else {
+    video = useSelector((store) => store.movies?.watchingMovieVideo);
+    // console.log("watching movie:", video);
+  }
+
+  if (!video) return;
 
   return (
     <div className="movie-trailer-background relative">
@@ -15,11 +33,9 @@ const MovieTrailerBackground = ({ movieId }) => {
         // height="500"
         // width="500"
         src={
-          "https://www.youtube.com/embed/" +
-          movieTrailerData?.key +
-          "?playlist=" +
-          movieTrailerData?.key +
-          "&loop=1&autoplay=1&mute=1&controls=0"
+          showTrailer
+            ? `${YT_EMBED_URL_BASE + video?.key + YT_EMBED_URL_PLAYLIST + video?.key + YT_EMBED_URL_LOOP_AUTO_MUTE_CONTROLS}`
+            : `${YT_EMBED_URL_BASE + video?.key}`
         }
         title="YouTube video player"
         frameBorder="0"

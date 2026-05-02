@@ -7,24 +7,31 @@ import {
   showBrowsePageTrailer,
 } from "../utils/moviesSlice";
 
-const MainContainer = () => {
-  const movieData = useSelector((store) => store.movies?.nowPlayingMovies);
-
+const WatchingMovie = () => {
   const showTrailer = useSelector(
     (store) => store.movies?.browsePageShowTrailer,
   );
 
-  if (!movieData || !showTrailer) return;
+  const watchingMovie = useSelector((store) => store.movies?.watchingMovie);
+  // console.log(watchingMovie);
 
-  let { original_title, overview, id } = movieData[0];
-  // console.log(id);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(showBrowsePageTrailer(true));
+      dispatch(clearWatchingMovie());
+      console.log("Component unmounts");
+    };
+  }, []);
+
+  if (!watchingMovie || showTrailer) return;
 
   return (
     <div className="main-movie-container h-[80lvh]">
-      <MovieTrailerBackground movie={movieData[0]} />
-      <MovieTrailerBackgroundInfo title={original_title} overview={overview} />
+      <MovieTrailerBackground movie={watchingMovie} />
     </div>
   );
 };
 
-export default MainContainer;
+export default WatchingMovie;

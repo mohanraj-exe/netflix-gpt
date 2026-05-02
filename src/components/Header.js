@@ -58,10 +58,6 @@ const Header = () => {
 
       {user && (
         <div className="flex justify-between items-center gap-2">
-          <span className="flex">
-            Hello,&nbsp;
-            <p className="font-bold text-white">{user?.username}</p>
-          </span>
           <img
             className="user-avatar border-2 border-gray-100 border-solid rounded-full w-12 h-12"
             src={user?.photoURL}
