@@ -30,7 +30,7 @@ const useMovieTrailer = (movie) => {
     // console.log(jsonRes);
 
     const { results } = jsonRes;
-    console.log(results);
+    // console.log(results);
 
     const filterData = results?.filter((video) => video.type === "Trailer");
     // console.log("Trailer kind of videos found:", filterData);

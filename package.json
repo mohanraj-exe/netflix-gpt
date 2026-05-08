@@ -10,12 +10,15 @@
     "build": "parcel build index.html"
   },
   "devDependencies": {
+    "buffer": "^6.0.3",
     "parcel": "^2.16.4"
   },
   "dependencies": {
+    "@google/genai": "^1.52.0",
     "@reduxjs/toolkit": "^2.11.2",
     "@tailwindcss/postcss": "^4.2.2",
     "firebase": "^12.12.1",
+    "openai": "^6.36.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-redux": "^9.2.0",

@@ -1,4 +1,4 @@
-import { NETFLIX_LOGO } from "../utils/constants";
+import { NETFLIX_LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../utils/userSlice";
@@ -10,11 +10,24 @@ import { useEffect } from "react";
 import { auth } from "../utils/firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice.js";
+import { toggleGptSearchView } from "../utils/gptSlice.js";
+import { changeLanguage } from "../utils/configSlice.js";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store.gpt?.showGptSearch);
+
+  const handleGptSearchClick = () => {
+    console.log("button clicked!");
+    dispatch(toggleGptSearchView());
+  };
+
+  const handleLanguageChange = (e) => {
+    console.log(e.target.value);
+    dispatch(changeLanguage(e.target.value));
+  };
 
   const handleLogoutButton = () => {
     signOut(auth)
@@ -57,7 +70,23 @@ const Header = () => {
       <img className="w-40" src={NETFLIX_LOGO} alt="logo" />
 
       {user && (
-        <div className="flex justify-between items-center gap-2">
+        <div className="flex justify-between items-center gap-3">
+
+          {showGptSearch && (
+            <select onChange={handleLanguageChange}>
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
+              ))}
+            </select>
+          )}
+
+          <button
+            className="bg-black text-orange-500 px-6 py-2 rounded-md cursor-pointer"
+            onClick={handleGptSearchClick}
+          >
+            {showGptSearch ? "Home" : "GPT Search"}
+          </button>
+
           <img
             className="user-avatar border-2 border-gray-100 border-solid rounded-full w-12 h-12"
             src={user?.photoURL}

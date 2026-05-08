@@ -9,7 +9,7 @@ export const TMDB_FETCH_HEADER = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YzE2YThhZjEyMGNjMDhkZmUwYmQ3ZTc3NjhlYWM4YSIsIm5iZiI6MTc3NzEwMTE4MC44NDksInN1YiI6IjY5ZWM2OTdjMzkzMDQ3ZWJiOTkzNWQzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.R8PH7qF5634A1FpSmmrua7eHMzmtLBFtmJ64JmD2iH0",
+      `Bearer ${process.env.REACT_APP_TMDB_ACCESS_TOKEN}`,
   },
 };
 
@@ -23,6 +23,10 @@ export const TMDB_UPCOMING_MOVIES_API = "upcoming?page=1";
 
 export const TMDB_TOP_RATED_MOVIES_API = "top_rated?page=1";
 
+export const TMDB_MOVIE_SEARCH = "https://api.themoviedb.org/3/search/movie";
+
+export const TMDB_QUERY_PARAMS = "&include_adult=false&language=en-US&page=1";
+
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
 
 export const YT_EMBED_URL_BASE = "https://www.youtube.com/embed/";
@@ -31,3 +35,13 @@ export const YT_EMBED_URL_PLAYLIST = "?playlist=";
 
 export const YT_EMBED_URL_LOOP_AUTO_MUTE_CONTROLS =
   "&loop=1&autoplay=1&mute=1&controls=0";
+
+export const SUPPORTED_LANGUAGES = [
+  { identifier: "en", name: 'English' },
+  { identifier: "tamil", name: 'Tamil' },
+  { identifier: "kannada", name: 'Kannada' },
+];
+
+export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+
+export const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;

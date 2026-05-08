@@ -6,19 +6,38 @@ import {
 } from "../utils/constants";
 import { addP, addPopularMovies } from "../utils/moviesSlice";
 import { useEffect } from "react";
+import createApiHelper from "../utils/createApiHelper";
+import { addError } from "../utils/errorSlice";
 
 const usePopularMovies = () => {
   const dispatch = useDispatch();
 
   const getPopularMovies = async () => {
-    const fetchRes = await fetch(
-      TMDB_BASE_URL + TMDB_POPULAR_MOVIES_API,
-      TMDB_FETCH_HEADER,
-    );
-    const jsonRes = await fetchRes.json();
-    // console.log(jsonRes);
+    try {
+      const fetchRes = await fetch(
+        TMDB_BASE_URL + TMDB_POPULAR_MOVIES_API,
+        TMDB_FETCH_HEADER,
+      );
 
-    dispatch(addPopularMovies(jsonRes.results));
+      const jsonRes = await fetchRes.json();
+
+      if (!fetchRes.ok && !jsonRes.success) {
+        const error = createApiHelper(
+          fetchRes.status,
+          fetchRes?.statusText ? fetchRes.statusText : jsonRes?.status_message,
+        );
+
+        throw error;
+      }
+
+      const filteredRes = jsonRes?.results?.filter(
+        (movie) => movie.genre_ids[0] != 18,
+      );
+
+      dispatch(addPopularMovies(filteredRes));
+    } catch (error) {
+      dispatch(addError({ status: error.name, message: error.message }));
+    }
   };
 
   useEffect(() => {
