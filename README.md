@@ -1,4 +1,4 @@
-Phase-1
+## Phase-1
  - Created project with parcel.
  - Configured Tailwind css
  - Header component
@@ -12,7 +12,7 @@ Phase-1
  - Firebase Authentication module initialized into our app.
  - Create account and login firebase API integrated into our app.
 
-Phase-2
+## Phase-2
  - Bug fix: Sign up user Display name and Profile picture update.
  - Bug fix: If the user is not logged in Redirect /browse to Login Page and vice-versa
  - Unsubscibed to the onAuthStateChanged callback
@@ -28,9 +28,16 @@ Phase-2
  - Embedded the Yotube video and make it autoplay and mute
  - Tailwind Classes to make Main Container.
 
-Phase-3
+## Phase-3
  - Built Secondary Component
  - Built Movie List
  - Built Movie Card
  - TMDB Image CDN URL
  - usePopularMovies and similar Custom hooks.
+
+ ## Phase-4
+ - Integrated Gemini AI API into our app.
+ - Added error element.
+ - Added AI Movie Search and suggestions UI
+ - Project Cleanup
+ - Added constants 
