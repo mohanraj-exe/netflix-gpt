@@ -18,10 +18,8 @@ const MovieTrailerBackground = ({ movie }) => {
 
   if (showTrailer) {
     video = useSelector((store) => store.movies?.movieTrailerVideo);
-    // console.log("show trailer:", video);
   } else {
     video = useSelector((store) => store.movies?.watchingMovieVideo);
-    // console.log("watching movie:", video);
   }
 
   if (!video) return;
@@ -30,8 +28,6 @@ const MovieTrailerBackground = ({ movie }) => {
     <div className="movie-trailer-background relative">
       <iframe
         className="aspect-video absolute"
-        // height="500"
-        // width="500"
         src={
           showTrailer
             ? `${YT_EMBED_URL_BASE + video?.key + YT_EMBED_URL_PLAYLIST + video?.key + YT_EMBED_URL_LOOP_AUTO_MUTE_CONTROLS}`

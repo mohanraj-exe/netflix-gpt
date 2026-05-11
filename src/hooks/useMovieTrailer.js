@@ -8,8 +8,6 @@ import {
 import { useEffect } from "react";
 
 const useMovieTrailer = (movie) => {
-  // console.log(movie);
-
   const { id } = movie;
 
   const showTrailer = useSelector(
@@ -19,7 +17,6 @@ const useMovieTrailer = (movie) => {
   const dispatch = useDispatch();
 
   const getMovieDetails = async () => {
-    // dispatch(clearMovie());
 
     const fetchRes = await fetch(
       TMDB_BASE_URL + id + "/videos",
@@ -27,15 +24,12 @@ const useMovieTrailer = (movie) => {
     );
 
     const jsonRes = await fetchRes?.json();
-    // console.log(jsonRes);
 
     const { results } = jsonRes;
-    // console.log(results);
 
     const filterData = results?.filter((video) => video.type === "Trailer");
-    // console.log("Trailer kind of videos found:", filterData);
+
     const movieTrailer = filterData?.length ? filterData[0] : results[0];
-    // console.log("Kind of videos other than trailer:", movieTrailer);
 
     if (showTrailer) {
       dispatch(

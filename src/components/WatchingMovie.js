@@ -13,7 +13,6 @@ const WatchingMovie = () => {
   );
 
   const watchingMovie = useSelector((store) => store.movies?.watchingMovie);
-  // console.log(watchingMovie);
 
   const dispatch = useDispatch();
 
@@ -21,7 +20,6 @@ const WatchingMovie = () => {
     return () => {
       dispatch(showBrowsePageTrailer(true));
       dispatch(clearWatchingMovie());
-      console.log("Component unmounts");
     };
   }, []);
 

@@ -10,7 +10,6 @@ const MovieTrailerBackgroundInfo = ({ title, overview }) => {
   const dispatch = useDispatch();
 
   const handleTrailer = (e) => {
-    console.log(e);
     dispatch(showBrowsePageTrailer(false));
     dispatch(addWatchingMovie(movieTrailer));
     navigate(`/watch/${movieTrailer?.id}`);

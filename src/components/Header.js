@@ -20,12 +20,10 @@ const Header = () => {
   const showGptSearch = useSelector((store) => store.gpt?.showGptSearch);
 
   const handleGptSearchClick = () => {
-    console.log("button clicked!");
     dispatch(toggleGptSearchView());
   };
 
   const handleLanguageChange = (e) => {
-    console.log(e.target.value);
     dispatch(changeLanguage(e.target.value));
   };
 
@@ -39,11 +37,7 @@ const Header = () => {
 
   useEffect(() => {
     let subscribe = onAuthStateChanged(auth, (user) => {
-      // console.log("User data starts fetching...");
-      // console.log(user);
-
       if (user) {
-        // console.log("User found!");
         const { email, uid, photoURL, displayName } = user;
         dispatch(
           addUser({
@@ -55,7 +49,6 @@ const Header = () => {
         );
         navigate("/browse");
       } else {
-        // console.log("User signed out");
         dispatch(removeUser());
         navigate("/");
       }

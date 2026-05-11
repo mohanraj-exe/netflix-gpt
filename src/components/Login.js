@@ -10,11 +10,9 @@ import {
 } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router";
 
 const Login = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -30,7 +28,6 @@ const Login = () => {
   };
 
   const handleButtonClick = () => {
-    // console.log(e);
     const message = validate(
       isLoginForm,
       email.current.value,
@@ -39,7 +36,6 @@ const Login = () => {
       !isLoginForm ? fullName.current.value : null,
     );
 
-    // console.log(message);
     setErrorMessage(message);
 
     if (message) return;
@@ -54,7 +50,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          // console.log(user);
 
           updateProfile(user, {
             displayName: fullName.current.value,
@@ -74,8 +69,6 @@ const Login = () => {
             .catch((error) => {
               setErrorMessage(error.message);
             });
-
-          // navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -93,14 +86,11 @@ const Login = () => {
         .then((userCredential) => {
           // Signed In
           const user = userCredential.user;
-          // console.log(user);
-          // navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
 
-          // console.log(error.code, error.message);
           setErrorMessage(errorCode + "-" + errorMessage);
         });
     }

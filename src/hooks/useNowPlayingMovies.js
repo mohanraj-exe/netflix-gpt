@@ -38,7 +38,6 @@ const useNowPlayingMovies = () => {
 
       dispatch(addnowPlayingMovies(filteredRes));
     } catch (error) {
-      console.log({ status: error.name, message: error.message });
       dispatch(addError({ status: error.name, message: error.message }));
     }
   };

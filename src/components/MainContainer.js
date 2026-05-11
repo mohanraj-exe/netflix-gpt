@@ -17,7 +17,6 @@ const MainContainer = () => {
   if (!movieData || !showTrailer) return;
 
   let { original_title, overview, id } = movieData[0];
-  // console.log(id);
 
   return (
     <div className="main-movie-container h-[80lvh]">
