@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
 import { lang } from "../utils/languageConstant";
 import { useRef, useState } from "react";
-import client from "../utils/genai";
 import aiQueryHelper from "../utils/aiQueryHelper";
 import { addGptMovieResult } from "../utils/gptSlice";
 import useGptMovieSearch from "../hooks/useGptMovieSearch";
+import createApiHelper from "../utils/createApiHelper";
+import { LIVE_FIREBASE_FUNCTION_GEMINI_API_URL } from "../utils/constants";
 
 const GptSearchBar = () => {
   const selected = useSelector((store) => store.config?.lang);
@@ -18,16 +19,23 @@ const GptSearchBar = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!searchText.current.value) return;
-    const gptQuery = aiQueryHelper(searchText.current.value);
 
-    // genai
     try {
-      const completion = await client.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: gptQuery,
-      });
+      const fetchRes = await fetch(
+        LIVE_FIREBASE_FUNCTION_GEMINI_API_URL,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: searchText.current.value,
+          }),
+        },
+      );
 
-      const moviesList = completion?.candidates?.[0]?.content?.parts?.[0]?.text.split(", ");
+      const jsonRes = await fetchRes.json();
+      const moviesList = jsonRes?.data?.candidates?.[0]?.content?.parts?.[0]?.text.split(", ");
 
       dispatch(addGptMovieResult(moviesList));
     } catch (err) {

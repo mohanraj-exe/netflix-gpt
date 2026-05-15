@@ -42,6 +42,6 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "kannada", name: 'Kannada' },
 ];
 
-export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+export const LOCAL_FIREBASE_FUNCTION_GEMINI_API_URL = "http://127.0.0.1:5001/netflix-gpt-cae9f/us-central1/askGemini";
 
-export const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
+export const LIVE_FIREBASE_FUNCTION_GEMINI_API_URL = "https://us-central1-netflix-gpt-cae9f.cloudfunctions.net/askGemini";
