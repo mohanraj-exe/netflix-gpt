@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
 import { lang } from "../utils/languageConstant";
 import { useRef, useState } from "react";
-import aiQueryHelper from "../utils/aiQueryHelper";
 import { addGptMovieResult } from "../utils/gptSlice";
 import useGptMovieSearch from "../hooks/useGptMovieSearch";
 import createApiHelper from "../utils/createApiHelper";
