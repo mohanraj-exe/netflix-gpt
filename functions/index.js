@@ -1,8 +1,8 @@
 const cors = require("cors");
 const corsAllow = cors({
   origin: [
-    "https://netflix-gpt-cae9f.web.app/",
-    "https://netflix-gpt-cae9f.firebaseapp.com/",
+    "https://netflix-gpt-cae9f.web.app",
+    "https://netflix-gpt-cae9f.firebaseapp.com",
   ],
 });
 

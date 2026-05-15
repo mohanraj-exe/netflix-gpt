@@ -44,4 +44,4 @@ export const SUPPORTED_LANGUAGES = [
 
 export const LOCAL_FIREBASE_FUNCTION_GEMINI_API_URL = "http://127.0.0.1:5001/netflix-gpt-cae9f/us-central1/askGemini";
 
-export const LIVE_FIREBASE_FUNCTION_GEMINI_API_URL = "https://us-central1-netflix-gpt-cae9f.cloudfunctions.net/askGemini";
+export const LIVE_FIREBASE_FUNCTION_GEMINI_API_URL = "https://askgemini-bkxjgfqsva-uc.a.run.app";
