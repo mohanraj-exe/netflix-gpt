@@ -1,3 +1,4 @@
+# Netflix-GPT
 ## Phase-1
  - Created project with parcel.
  - Configured Tailwind css
@@ -40,4 +41,17 @@
  - Added error element.
  - Added AI Movie Search and suggestions UI
  - Project Cleanup
- - Added constants 
+ - Added constants
+
+ ## Project screenshots
+  ### User login page
+ <img width="1343" height="626" alt="netflix-user-login" src="https://github.com/user-attachments/assets/91d0fcb1-057d-48fe-94ac-6473b5339773" />
+ 
+  ### Browse page
+ <img width="2712" height="1220" alt="netflix-browse-page" src="https://github.com/user-attachments/assets/daabf896-48da-42f4-932d-dcbf7e1cbb36" />
+
+  ### Movie categories page
+ <img width="2712" height="1220" alt="netflix-browse-page-movie-categories" src="https://github.com/user-attachments/assets/43b625ff-cae4-4027-a73e-a3cc70b784c6" />
+
+  ### Gemini search page
+ <img width="2712" height="1220" alt="netflix-browse-page-ai-search" src="https://github.com/user-attachments/assets/97b6f3bd-fbe1-45d9-b713-d7fd372749c5" />
