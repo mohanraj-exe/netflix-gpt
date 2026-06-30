@@ -50,8 +50,8 @@
   ### Browse page
  <img width="2712" height="1220" alt="netflix-browse-page" src="https://github.com/user-attachments/assets/daabf896-48da-42f4-932d-dcbf7e1cbb36" />
 
-  ### Movie categories page
+  ### Browse page-Movie categories
  <img width="2712" height="1220" alt="netflix-browse-page-movie-categories" src="https://github.com/user-attachments/assets/43b625ff-cae4-4027-a73e-a3cc70b784c6" />
 
-  ### Gemini search page
+  ### Browse page-Gemini search
  <img width="2712" height="1220" alt="netflix-browse-page-ai-search" src="https://github.com/user-attachments/assets/97b6f3bd-fbe1-45d9-b713-d7fd372749c5" />
